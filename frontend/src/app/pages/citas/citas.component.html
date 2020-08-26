@@ -1,0 +1,33 @@
+<div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Citas</h2>
+                    <h3 class="card-title">Citas (<small> {{totalCitas}} </small>)</h3>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th *ngIf="esUser" class="text-center">Medico</th>
+                                <th *ngIf="esMed" class="text-center">Paciente</th>
+                                <th class="text-center">Precio Consulta</th>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cita of citas;">
+                                <td *ngIf="esMed" class="text-center">{{cita.paciente.nombres}}</td>
+                                <td *ngIf="esUser" class="text-center">{{cita.medico.nombres}}</td>
+                                <td class="text-center">{{cita.precioConsulta}}</td>
+                                <td class="text-center">{{cita.fecha}}</td>
+                                <td class="text-center">{{cita.hora}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="cambiarDesde(-5)" class="btn btn-secondary mr-1">Anteriores</button>
+                    <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+                </div>
+            </div>
+        </div>
+</div>

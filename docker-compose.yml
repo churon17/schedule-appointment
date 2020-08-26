@@ -1,0 +1,42 @@
+version: "3.5"
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+  backend:
+    container_name: backend
+    depends_on:
+      - mongo
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - ./backend:/app
+      - /app/node_modules
+  mongo:
+    image: mongo
+    container_name: mongo
+    command: mongod --auth
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: hospital
+    ports:
+      - 27017:27017
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    container_name: nginx
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4000:80"

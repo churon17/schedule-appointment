@@ -1,0 +1,109 @@
+<div>
+    <div class="row" *ngIf="!especialistasReady">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Seleccionar la especialidad a escoger la cita</h2>
+                    <h3 class="card-title">Especialidades (<small> {{totalEspecialidades}}</small>)</h3>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Precio Consulta</th>
+                                <th class="text-center">Opcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let especialidad of especialidades;">
+                                <td class="text-center">{{especialidad.nombre}}</td>
+                                <td class="text-center">{{especialidad.precioConsulta}}</td>
+                                <td class="text-center">
+                                    <button (click)="mostrarEspecialistas(especialidad)" class="btn btn-primary">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>Ver especialistas
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="cambiarDesde(-5)" class="btn btn-secondary mr-1">Anteriores</button>
+                    <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary m-2" *ngIf="especialistasReady && !calendarReady"
+        (click)="mostrarNuevamenteEspecialidades()"> Mostrar
+        Nuevamente las especialidades </button>
+
+    <div class="row" *ngIf="especialistasReady && !calendarReady">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Especialistas de <small> {{currentEspecialidad.nombre}}
+                            ({{totalMedicos}})</small></h3>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Especialista</th>
+                                <th class="text-center">Foto</th>
+                                <th class="text-center">Opcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medico of medicosPorEspecialidad;">
+                                <td class="text-center">{{medico.nombres}}</td>
+                                <td class="text-center">
+                                    <img [src]="medico.foto | imagen:'medico'" class="img-circle img-50">
+                                </td>
+                                <td class="text-center">
+                                    <button (click)="mostrarCalendar(medico)" class="btn btn-info">
+                                        Seleccionar Médico
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="cambiarDesdeMedicos(-5)" class="btn btn-secondary mr-1">Anteriores</button>
+                    <button (click)="cambiarDesdeMedicos(5)" class="btn btn-secondary">Siguientes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary m-2" *ngIf="calendarReady" (click)="mostrarNuevamenteEspecialistas()"> Mostrar
+        Nuevamente los especialistas </button>
+
+    <!-- Calendario -->
+    <div class="" *ngIf="calendarReady">
+        <h3> Por favor, seleccione el día a solicitar la cita</h3>
+        <full-calendar locale="es"  hiddenDays="[0, 6]"
+            selectable="true" [options]="calendarOptions">
+        </full-calendar>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Seleccione la hora de la cita para el {{ fechaSeleccionada}}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <select name="horaSeleccionada" [(ngModel)]="horaSeleccionada" class="form-control form-control-sm">
+                                <option selected="selected" disabled>Seleccione una Hora</option>
+                                <option *ngFor="let horas of horasDisponibles">{{horas}}</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="button" (click)="agendarCita()" class="btn btn-primary">Seleccionar Horario</button>
+                    </div>
+                  </div>
+                </div>
+        </div>
+    </div>
+</div>

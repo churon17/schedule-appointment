@@ -1,0 +1,92 @@
+<div class="row animated fadeIn">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Perfil del Usuario</h4>
+                <h6 class="card-subtitle">Información General</h6>
+                <form ngNativeValidator #f="ngForm" (ngSubmit)="guardar(f.value)" class="form p-t-20">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Cédula</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                            <input [ngModel]="usuario.cedula" [disabled]="!esUser" name="cedula" type="text" class="form-control" id="exampleInputuname" placeholder="Nombres" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Nombres</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input [ngModel]="usuario.nombres" [disabled]="!esUser" name="nombres" type="text" class="form-control" id="exampleInputuname" placeholder="Nombres" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label for="exampleInputuname">Apellidos</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input [ngModel]="usuario.apellidos" [disabled]="!esUser" name="apellidos" type="text" class="form-control" id="exampleInputuname" placeholder="Apellidos" required>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input [ngModel]="usuario.correo" [disabled]="!esUser" name="correo" class="form-control" placeholder="Correo electrónico" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Dirección<nav></nav></label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-home "></i></div>
+                            <input [ngModel]="usuario.direccion" [disabled]="esAdmin" name="direccion" class="form-control" placeholder="Dirección" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">Edad</label>
+                            <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i></div>
+                                    <input [ngModel]="usuario.edad" [disabled]="!esUser" name="edad" class="form-control" placeholder="Edad" required>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">Teléfono</label>
+                            <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                                    <input [ngModel]="usuario.telefono" [disabled]="esAdmin" name="telefono" class="form-control" placeholder="Contacto">
+                            </div>
+                    </div>
+                   
+                    <button *ngIf="!esAdmin" type="submit" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Actualizar información personal
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body" align="center">
+                    <h4 class="card-title">Fotografia del Usuario</h4>
+                    <h6 class="card-subtitle">Nombre de usuario</h6>
+
+                    <img *ngIf="!imagenTemp" [src]="usuario.foto | imagen : tipoFoto" class="w150" >
+                    <img *ngIf="imagenTemp" [src]="imagenTemp" class="w150" >
+
+                    <br>
+
+                    <input  (change)="seleccionImagen($event.target.files[0])" type="file">
+
+                    <br>
+                    <br>
+
+                    <button (click)="canbiarImagen()" [disabled]="!imagenSubir" type="button" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+                            <i class="fa fa-save"></i>
+                            Actualizar Foto
+                    </button>
+
+                </div>
+            </div>
+        </div>
+</div>
+

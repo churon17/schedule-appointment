@@ -1,0 +1,38 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+
+<div class="login-box card">
+    <div class="card-title m-t-40 m-b-0 p-3">
+        <h3>Historial Clínico</h3>
+    </div>
+    <div class="card-body">
+        <form ngNativeValidate [formGroup]="forma"  (ngSubmit)="registrarHistorial()" class="form-horizontal form-material" id="loginform"
+            action="index.html">
+            <div class="form-group m-t-20">
+                <div class="col-xs-12">
+                    <input formControlName="enfermedades" name="enfermedades" class="form-control" type="text" required
+                        placeholder="Enfermedades">
+                </div>
+            </div>
+            <div class="form-group m-t-20">
+                <div class="col-xs-12">
+                    <input formControlName="enfermedadesHereditarias" name="enfermedadesHereditarias"
+                        class="form-control" type="text" required placeholder="Enfermedades Hereditarias">
+                </div>
+            </div>
+            <div class="form-group m-t-20">
+                <div class="col-xs-12">
+                    <input formControlName="habitos" name="habitos" class="form-control" type="text" required
+                        placeholder="Hábitos">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                        <button class="btn btn-info btn-block text-uppercase waves-effect waves-light"
+                            type="submit">Registrar Historial</button>
+                    </div>
+            </div>
+        </form>
+    </div>
+</div>

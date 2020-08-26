@@ -1,0 +1,123 @@
+<div class="row" *ngIf="mostrarCitas">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Citas Realizadas</h2>
+                    <h3 class="card-title">Citas (<small> {{totalCitas}}</small>)</h3>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th *ngIf="esUser" class="text-center">Medico</th>
+                                <th *ngIf="esMed" class="text-center">Paciente</th>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Hora</th>
+                                <th class="text-center">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cita of citas;">
+                                <td *ngIf="esMed" class="text-center">{{cita.paciente.nombres}}</td>
+                                <td *ngIf="esUser" class="text-center">{{cita.medico.nombres}}</td>
+                                <td class="text-center">{{cita.fecha}}</td>
+                                <td class="text-center">{{cita.hora}}</td>
+                                <td *ngIf="esMed" class="text-center">
+                                    <button (click)="verDetallesCitaMed(cita)" class="btn btn-primary">
+                                        <i class="fa fa-eye" aria-hidden="true"></i> Ver Detalles
+                                    </button>
+                                </td>
+                                <td *ngIf="esUser" class="text-center">
+                                        <button (click)="verDetallesCitaUser(cita)" class="btn btn-primary">
+                                            <i class="fa fa-eye" aria-hidden="true"></i> Ver Detalles
+                                        </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="cambiarDesde(-5)" class="btn btn-secondary mr-1">Anteriores</button>
+                    <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+<button class="btn btn-primary mb-2" *ngIf="mostrarDetallesMed || mostrarDetallesUser" (click)="verCitasNuevamente()"> Ver Citas Realizadas Nuevamente</button>
+
+<div class="row" *ngIf="mostrarDetallesMed">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                        <div class="login-box card">
+                                <div class="card-title ml-2">
+                                    <h3>Detalles de la Cita con su respectiva Consulta</h3>
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Paciente:</strong> &nbsp; {{ currentPaciente.nombres }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Cedula:</strong> &nbsp; {{ currentPaciente.cedula }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Correo electrónico:</strong> &nbsp; {{ currentPaciente.correo }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Teléfono:</strong> &nbsp; {{ currentPaciente.telefono }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Dirección:</strong> &nbsp; {{ currentPaciente.direccion }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Genero:</strong> &nbsp; {{ currentPaciente.genero ? "MASCULINO" : "FEMENINO" }}
+                                </div>
+
+                                <div class="row ml-2">
+                                        <strong>Fecha:</strong> &nbsp; {{ currentCita.fecha }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Hora:</strong> &nbsp; {{ currentCita.hora }}
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- Mostrar Detalles User -->
+<div class="row" *ngIf="mostrarDetallesUser">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                        <div class="login-box card">
+                                <div class="card-title ml-2">
+                                    <h3>Detalles de la Cita con su respectiva Consulta</h3>
+                                </div>
+
+                                <div class="row ml-2">
+                                        <strong>Paciente:</strong> &nbsp; {{ currentMedico.nombres }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Cedula:</strong> &nbsp; {{ currentMedico.cedula }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Correo electrónico:</strong> &nbsp; {{ currentMedico.correo }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Teléfono:</strong> &nbsp; {{ currentMedico.telefono }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Dirección:</strong> &nbsp; {{ currentMedico.direccion }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Genero:</strong> &nbsp; {{ currentMedico.genero ? "MASCULINO" : "FEMENINO" }}
+                                </div>
+
+                                <div class="row ml-2">
+                                        <strong>Fecha:</strong> &nbsp; {{ currentCita.fecha }}
+                                </div>
+                                <div class="row ml-2">
+                                        <strong>Hora:</strong> &nbsp; {{ currentCita.hora }}
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>
