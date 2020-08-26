@@ -1,5 +1,16 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# exclude everything
+backend/server/uploads/admin/*
+backend/server/uploads/medicos/*
+backend/server/uploads/usuarios/*
+
+
+# exception to the rule
+!backend/server/uploads/admin/.gitkeep 
+!backend/server/uploads/medicos/.gitkeep 
+!backend/server/uploads/usuarios/.gitkeep 
+
 # compiled output
 backend/dist
 frontend/dist

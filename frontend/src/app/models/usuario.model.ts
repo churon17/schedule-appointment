@@ -1,39 +1,19 @@
-import { Persona } from './person.model';
 
-export class  Usuario extends Persona{
+export class  Usuario{
 
-    constructor(  nombres : string,
-         apellidos : string,
-         cedula : string,
-         edad : Number,
-         correo : string,
-         password : string,
-         direccion : string,
-         genero : Boolean,
-         telefono : string,
-         id? : string,
-         external_id? : string,
-         rol? : string,
-         foto?: string,
-         ){
-
-        super(nombres, 
-            apellidos,
-            cedula,
-            edad, 
-            correo,
-            password, 
-            direccion, 
-            genero,
-            telefono, 
-            id,
-            external_id,
-            rol, 
-            foto
-        );
-    }
-    
-
-
-
+  constructor(
+    public nombres: string,
+    public nombresProp: string,
+    public userName: string,
+    public edad: number,
+    public correo: string,
+    public password: string,
+    public direccion: string,
+    public genero: boolean,
+    public telefono: string,
+    public id?: string,
+    public external_id?: string,
+    public rol?: string,
+    public foto?: string
+  ){}
 }

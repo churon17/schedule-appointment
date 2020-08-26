@@ -5,6 +5,7 @@ import { Cita } from 'src/app/models/cita.model';
 import { Router } from '@angular/router';
 import { Medico } from '../../models/med.model';
 import { MedicoService } from '../../services/medico/medico.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-citas-diarias',
@@ -13,12 +14,12 @@ import { MedicoService } from '../../services/medico/medico.service';
 })
 export class CitasDiariasComponent implements OnInit {
 
-  medicos : Medico[] = [];
+  medicos: Medico[] = [];
 
   totalCitas : number = 0;
   desde : number = 0;
 
-  citas : Cita[] ;
+  citas: Cita[] ;
 
   esAdmin : boolean;
   esUser : boolean;
@@ -43,15 +44,9 @@ export class CitasDiariasComponent implements OnInit {
       this.cargarCitasDiariasPaciente();
       this.esUser = true;
     }
-    if(this.loginService.role === "ADMIN_ROLE"){
-      this.esAdmin = true;
-      this.showMedicos = true;
-      this.cargarMedicos();
-    }
-
   }
 
-  cargarMedicos(){  
+  cargarMedicos(){
     this.medicoService.cargarMedicos(this.desdeMedicos)
                         .subscribe( (response : any)=>{
                           this.totalMedicos = response.data.conteo;
@@ -90,7 +85,7 @@ export class CitasDiariasComponent implements OnInit {
 
   cargarCitasDiariasMedico(){
     this.citaService.cargarCitasDiariasMedico(this.loginService.currentUser.external_id, this.desde).subscribe( (response : any) =>{
-        
+
         this.citas = response.data.citas;
         this.totalCitas = response.data.conteo;
 
@@ -101,7 +96,7 @@ export class CitasDiariasComponent implements OnInit {
 
   cargarCitasDiariasPaciente(){
     this.citaService.cargarCitasDiariasPaciente(this.loginService.currentUser.external_id, this.desde).subscribe( (response : any) =>{
-        
+
       console.log(response);
       this.citas = response.data.citas;
       this.totalCitas = response.data.conteo;
@@ -122,18 +117,19 @@ export class CitasDiariasComponent implements OnInit {
 
   }
 
-  atenderCita(cita : Cita){
+  atenderCita(cita: Cita){
     this.citaService.currentCita = cita;
     localStorage.setItem('cita', JSON.stringify(cita));
     this.citaService.registrarCita(cita.external_id).subscribe(response =>{
       console.log('Cita atendida', response);
-      this.router.navigate(['/realizarConsulta']);
+      Swal.fire('Se ha registrado la cita');
+      this.router.navigate(['/citas']);
     });
   }
 
   cargarCitasMedicoSeleccionado(medico){
     this.showMedicos = false;
-    this.citaService.cargarCitasDiariasMedico(medico.external_id, this.desde).subscribe( (response : any) =>{
+    this.citaService.cargarCitasDiariasMedico(medico.external_id, this.desde).subscribe( (response: any) =>{
       this.citas = response.data.citas;
       this.totalCitas = response.data.conteo;
 

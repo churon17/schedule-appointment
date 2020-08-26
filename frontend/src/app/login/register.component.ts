@@ -16,22 +16,22 @@ declare function init_plugins();
 })
 export class RegisterComponent implements OnInit {
 
-  forma : FormGroup;
+  forma: FormGroup;
 
-  googleUserPhoto : string = null;
+  googleUserPhoto: string = null;
 
-  equalEmail : any = {};
-  equalCedula : any = {};
+  equalEmail: any = {};
+  equalCedula: any = {};
 
-  constructor(public usuarioService : UsuarioService,
-              public router : Router) { }
+  constructor(public usuarioService: UsuarioService,
+              public router: Router) { }
 
 
   ngOnInit() {
     init_plugins();
     this.forma = new FormGroup({
-      nombres : new FormControl("Jean Carlos", Validators.required),
-      apellidos : new FormControl("Alarcón Ochoa", Validators.required),
+      nombresProp : new FormControl("Jean Carlos", Validators.required),
+      nombres : new FormControl("Alarcón Ochoa", Validators.required),
       userName : new FormControl("sashita", Validators.required),
       edad : new FormControl(21, Validators.required),
       email : new FormControl("", [Validators.required,
@@ -47,29 +47,6 @@ export class RegisterComponent implements OnInit {
       validators : this.sonIguales('password', 'password2')
     }
     );
-
-    this.forma.controls['email']
-              .valueChanges
-              .subscribe(data =>{
-                if(data.length > 0 ){
-                  this.usuarioService.verifyUserName(data).subscribe( (response : any)=>{
-                    this.equalEmail = response.data;
-                    console.log(response);
-                  });
-                }
-              });
-
-
-    this.forma.controls['cedula']
-              .valueChanges
-              .subscribe(data =>{
-                if(data.length === 10){
-                  this.usuarioService.verifyCedula(data).subscribe( (response : any)=>{
-                    this.equalCedula = response.data;
-                    console.log(response);
-                  });
-                }
-              });
 
     this.loadCurrentUser();
     this.deleteCurrentUser();
@@ -93,22 +70,22 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    if(!this.forma.value.condiciones) {
-       Swal.fire('Importante', 'Debe de aceptar los terminos y condiciones', 'warning');
+    if (!this.forma.value.condiciones) {
+      Swal.fire('Importante', 'Debe de aceptar los terminos y condiciones', 'warning');
       return;
     }
 
-    if(this.equalCedula.equal){
-       Swal.fire('Error', this.equalCedula.mensaje , 'error');
+    if (this.equalCedula.equal){
+      Swal.fire('Error', this.equalCedula.mensaje , 'error');
       return;
     }
 
-    if(this.equalEmail.equal){
-       Swal.fire('Error', this.equalEmail.mensaje , 'error');
+    if (this.equalEmail.equal){
+      Swal.fire('Error', this.equalEmail.mensaje , 'error');
       return;
     }
 
-    let valueForm = this.forma.value;
+    const valueForm = this.forma.value;
 
     let genero = (valueForm.genero === "Masculino") ? true : false;
 
@@ -116,8 +93,8 @@ export class RegisterComponent implements OnInit {
 
     let usuario = new Usuario(
       valueForm.nombres,
-      valueForm.apellidos,
-      valueForm.cedula,
+      valueForm.nombresProp,
+      valueForm.userName,
       edad,
       valueForm.email,
       valueForm.password,
@@ -132,7 +109,7 @@ export class RegisterComponent implements OnInit {
 
     this.usuarioService.crearUsuario(usuario)
           .subscribe( response => {
-            this.router.navigate(['/login'])
+            this.router.navigate(['/login']);
           });
   }
 

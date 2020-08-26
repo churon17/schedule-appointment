@@ -34,9 +34,8 @@ export class ProfileComponent implements OnInit {
 
   guardar(usuario : Usuario){
 
-    this.usuario.cedula = usuario.cedula;
+
     this.usuario.nombres = usuario.nombres;
-    this.usuario.apellidos = usuario.apellidos;
     this.usuario.correo = usuario.correo;
     this.usuario.direccion = usuario.correo;
     this.usuario.edad = usuario.edad;
