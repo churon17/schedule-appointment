@@ -13,6 +13,8 @@ import { Medico } from '../../../models/med.model';
 })
 export class CitasRealizadasComponent implements OnInit {
 
+  tipoFoto : string = "";
+
   currentCita: Cita;
   currentPaciente: Usuario;
   currentMedico: Medico;
@@ -36,7 +38,9 @@ export class CitasRealizadasComponent implements OnInit {
 
   constructor(public loginService: LoginService,
               public citaService: CitaService,
-              public router: Router) { }
+              public router: Router) {
+                this.tipoFoto = loginService.role === "ADMIN_ROLE" ? 'admin' : loginService.role === "MED_ROLE" ? "medico" : "usuarios";
+               }
 
   ngOnInit() {
     this.loadRole();
@@ -58,7 +62,7 @@ export class CitasRealizadasComponent implements OnInit {
                       console.log(response);
                       this.citas = response.data.citas;
                       this.totalCitas = response.data.conteo;
-                      this.citasReady = true;
+                      this.citasReady = true;                      
                     });
   }
 
@@ -91,6 +95,8 @@ export class CitasRealizadasComponent implements OnInit {
   verDetallesCitaMed(cita: Cita){
     this.mostrarCitas = false;
     this.currentCita = cita;
+    console.log(cita);
+    
     this.mostrarDetallesMed = true;
     this.currentPaciente = this.currentCita.paciente;
     // this.currentConsulta = this.currentCita.consulta;

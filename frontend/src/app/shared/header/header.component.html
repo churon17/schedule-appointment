@@ -8,19 +8,19 @@
         <!-- ============================================================== -->
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">
-                <!-- Logo icon --><b>
+                <!-- Logo icon --><b style="margin-left: 7px;">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                    <img src="assets/images/logo-i.png" alt="homepage" class="dark-logo" width="40" height="40"/>
                     <!-- Light Logo icon -->
-                    <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                    <img src="assets/images/logo-i.png" alt="homepage" class="light-logo" width="40" height="40"/>
                 </b>
                 <!--End Logo icon -->
-                <!-- Logo text --><span>
+                <!-- Logo text --><span style="margin-left: 30px;">
                 <!-- dark Logo text -->
-                <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                <img src="assets/images/logo-t.png" alt="homepage" class="dark-logo" width="80" height="40"/>
                 <!-- Light Logo text -->    
-                <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                <img src="assets/images/logo-.png" class="light-logo" alt="homepage" width="80" height="40"/></span> </a>
         </div>
         <!-- ============================================================== -->
         <!-- End Logo -->
@@ -46,55 +46,7 @@
                     <div class="app-search" >
                         <input #input (keyup.enter)="buscar(input.value)" type="text" class="form-control" placeholder="Buscar y Enter"> <a class="srh-btn"><i class="ti-close"></i></a> </div>
                 </li>
-                <!-- ============================================================== -->
-                <!-- Messages -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-email"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                    </a>
-                    <div class="dropdown-menu mailbox dropdown-menu-right animated fadeIn" aria-labelledby="2">
-                        <ul>
-                            <li>
-                                <div class="drop-title">You have 4 new messages</div>
-                            </li>
-                            <li>
-                                <div class="message-center">
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/1.jpg" alt="user" class="img-50 img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- ============================================================== -->
-                <!-- End Messages -->
-                <!-- ============================================================== -->
+            
                
                 <!-- ============================================================== -->
                 <!-- Profile -->
@@ -113,10 +65,6 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a routerLink="/profile"><i class="ti-user"></i> Ver Perfil</a></li>
-                            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a (click)="loginService.logout()" class="pointer"><i class="fa fa-power-off"></i> Cerrar sesión  </a></li>
                         </ul>

@@ -14,6 +14,8 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class CitasDiariasComponent implements OnInit {
 
+  tipoFoto : string = "";
+
   medicos: Medico[] = [];
 
   totalCitas : number = 0;
@@ -33,7 +35,9 @@ export class CitasDiariasComponent implements OnInit {
   constructor(public loginService : LoginService,
               public medicoService : MedicoService,
               public citaService : CitaService,
-              public router : Router) { }
+              public router : Router) { 
+                this.tipoFoto = loginService.role === "ADMIN_ROLE" ? 'admin' : loginService.role === "MED_ROLE" ? "medico" : "usuarios";
+              }
 
   ngOnInit() {
     if(this.loginService.role === "MED_ROLE"){

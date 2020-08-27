@@ -1,99 +1,90 @@
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<section id="wrapper" class="login-register login-sidebar"
-    style="background-image:url(../assets/images/background/login-register.jpg);">
-    <div class="login-box card">
-        <div class="card-title m-t-40 m-b-0 p-3">
-            <h3>Registra ahora a tu <b>Mascota</b></h3>
-            <small>Crea tu nueva cuenta y disfruta de los beneficios en Pet's and People</small>
-        </div>
-        <div class="card-body scroll scrollbar-primary">
-            <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form-horizontal form-material" id="loginform" action="index.html">
-                <div class="form-group m-t-20">
-                    <div class="col-xs-12">
-                        <input formControlName="nombresProp" name="nombresProp" class="form-control" type="text" required placeholder="Nombres del Propietario">
-                    </div>
-                </div>
-                <div class="form-group m-t-20">
-                    <div class="col-xs-12">
-                        <input formControlName="nombres" name="nombres" class="form-control" type="text" required placeholder="Nombres de la Mascota">
-                    </div>
-                </div>
-                <div class="form-group m-t-20">
-                  <div class="col-xs-12">
-                      <input formControlName="userName" name="userName" class="form-control" type="text" required placeholder="Nombre de usuario">
-                  </div>
-                </div>
-                <div class="form-group ">
-                    <h4>Fecha de nacimiento:</h4>
-                    <div class="col-xs-12">
-                        <input formControlName="edad" name="edad" class="form-control" type="date" required placeholder="Edad">
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <div class="col-xs-12">
-                        <input formControlName="email" name="email" class="form-control" type="email" required placeholder="Email">
-                    </div>
-                </div>
-
-                <div class="form-group m-t-20">
-                    <div class="col-xs-12">
-                        <input formControlName="direccion" name="direccion" class="form-control" type="text" required placeholder="Dirección">
-                    </div>
-                </div>
-
-                <div class="form-group m-t-20">
-                    <div class="col-xs-12">
-                        <input formControlName="telefono" name="telefono" class="form-control" type="text" required placeholder="Teléfono">
-                    </div>
-                </div>
-
-                <div class="form-group m-t-20">
-                    <label for="inputState">Género</label>
-                    <select formControlName="genero" name="genero" id="inputState" class="form-control" required>
-                        <option selected>Macho</option>
-                        <option> Hembra </option>
-                    </select>
-                </div>
-
-                <div class="form-group ">
-                    <div class="col-xs-12">
-                        <input formControlName="password" name="password" class="form-control" type="password" required placeholder="Contraseña">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <input formControlName="password2" name="password2" class="form-control" type="password" required placeholder="Confirmar Contraseña">
-                    </div>
-                </div>
-
-                <div class="form-group" *ngIf="forma.errors?.sonIguales && !forma.pristine">
-                    <div class="text-danger">Las contraseñas deben de ser iguales</div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <div class="checkbox checkbox-primary p-t-0">
-                            <input formControlName="condiciones" name="condiciones" id="checkbox-signup" type="checkbox">
-                            <label for="checkbox-signup"> Acepto los  <a href="#">términos y condiciones</a></label>
+<section id="wrapper">
+    <div class="login-register login-sidebar" style="background-image:url(../assets/images/background/background.png);">
+        <div class="login-box card">
+            <div class="card-body">
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form-horizontal form-material" id="loginform" action="index.html">
+                    <h3>Registra ahora a tu <b>Mascota</b></h3>
+                    <small>Crea tu nueva cuenta y disfruta de los beneficios en Pet's and People</small>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input formControlName="nombresProp" name="nombresProp" class="form-control" type="text" required placeholder="Nombres del Propietario">
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group text-center m-t-20">
-                    <div class="col-xs-12">
-                        <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"
-                            type="submit">Registrars Mascota</button>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input formControlName="nombres" name="nombres" class="form-control" type="text" required placeholder="Nombres de la Mascota">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group m-b-0">
-                    <div class="col-sm-12 text-center">
-                        <p>¿Ya tienes una cuenta? <a routerLink="/login" class="text-info m-l-5"><b>Inicia sesión</b></a></p>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input formControlName="userName" name="userName" class="form-control" type="text" required placeholder="Nombre de usuario">
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input formControlName="edad" name="edad" class="form-control" type="date" required placeholder="Edad">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input formControlName="email" name="email" class="form-control" type="email" required placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input formControlName="direccion" name="direccion" class="form-control" type="text" required placeholder="Dirección">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input formControlName="telefono" name="telefono" class="form-control" type="text" required placeholder="Teléfono">
+                        </div>
+                    </div>
+                    <div class="form-group m-t-20">
+                        <label for="inputState">Género</label>
+                        <select formControlName="genero" name="genero" id="inputState" class="form-control" required>
+                            <option selected>Macho</option>
+                            <option> Hembra </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input formControlName="password" name="password" class="form-control" type="password" required placeholder="Contraseña">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input formControlName="password2" name="password2" class="form-control" type="password" required placeholder="Confirmar Contraseña">
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="forma.errors?.sonIguales && !forma.pristine">
+                        <div class="text-danger">Las contraseñas deben de ser iguales</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="checkbox checkbox-primary p-t-0">
+                                <input formControlName="condiciones" name="condiciones" id="checkbox-signup" type="checkbox">
+                                <label for="checkbox-signup"> Acepto los  <a href="#">términos y condiciones</a></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"
+                                type="submit">Registrars Mascota</button>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-12 text-center">
+                            <p>¿Ya tienes una cuenta? <a routerLink="/login" class="text-info m-l-5"><b>Inicia sesión</b></a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>

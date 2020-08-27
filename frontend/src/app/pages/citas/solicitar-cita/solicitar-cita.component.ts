@@ -120,7 +120,7 @@ export class SolicitarCitaComponent implements OnInit {
     this.especialidadService.listarMedicosPorEspecialidad(especialidad.external_id, this.desdeMedicos)
       .subscribe((response: any) => {
         this.totalMedicos = response.data.conteo;
-        this.medicosPorEspecialidad = response.data.medicos;
+        this.medicosPorEspecialidad = response.data.medicos;        
       });
   }
 

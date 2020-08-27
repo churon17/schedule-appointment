@@ -13,14 +13,14 @@ let Usuario = require('../models/usuario');
 /*===================================
 Own
 =====================================*/
-let helpers = require("../helpers/functions");
+let helpers = require("../helpers/functions"); 
 
 /*===================================
 Variables
 =====================================*/
 const APP  = express();
 const CITA_PARAMS = 'fecha precioConsulta paciente hora external_id';
-const PERSONA_PARAMS = 'nombres apellidos cedula telefono correo direccion external_id';
+const PERSONA_PARAMS = 'nombres apellidos cedula telefono foto correo direccion external_id';
 let  {  verifyToken, verifyUser, verifyMed, verifyAdminOrAllUser } = require('../middlewares/authentication');
 
 /******************************************************************************************************

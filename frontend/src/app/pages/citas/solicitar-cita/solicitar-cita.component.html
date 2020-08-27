@@ -43,33 +43,36 @@
                 <div class="card-body">
                     <h3 class="card-title">Especialistas de <small> {{currentEspecialidad.nombre}}
                             ({{totalMedicos}})</small></h3>
-
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Especialista</th>
-                                <th class="text-center">Foto</th>
-                                <th class="text-center">Opcion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let medico of medicosPorEspecialidad;">
-                                <td class="text-center">{{medico.nombres}}</td>
-                                <td class="text-center">
-                                    <img [src]="medico.foto | imagen:'medico'" class="img-circle img-50">
-                                </td>
-                                <td class="text-center">
-                                    <button (click)="mostrarCalendar(medico)" class="btn btn-info">
-                                        Seleccionar Médico
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button (click)="cambiarDesdeMedicos(-5)" class="btn btn-secondary mr-1">Anteriores</button>
-                    <button (click)="cambiarDesdeMedicos(5)" class="btn btn-secondary">Siguientes</button>
+                    
                 </div>
+                
             </div>
+        </div>
+    </div>
+
+    <div *ngIf="especialistasReady && !calendarReady" style="display: flex; flex-wrap: wrap;">
+        <div *ngFor="let medico of medicosPorEspecialidad;" style="display: flex; flex-wrap: nowrap; flex-direction: row; margin-left: 25px; margin-top:10px; width: 30%;" >
+
+
+                <div class="card card-body" style="width: 300px;">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-3 text-center">
+                            <a href="app-contact-detail.html"><img src="../assets/images/users/1.jpg" alt="user" class="img-circle img-responsive"></a>
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <h3 class="box-title m-b-0">{{medico.nombres}}</h3> <small>{{medico.correo}}</small>
+                            <address>
+                                {{medico.direccion}}
+                                <br/>
+                                <br/>
+                                <abbr title="Phone">P:</abbr> {{medico.telefono}}
+                            </address>
+                            <button (click)="mostrarCalendar(medico)" class="btn btn-info">
+                                Seleccionar Médico
+                            </button>
+                        </div>
+                    </div>
+                </div>   
         </div>
     </div>
 
@@ -79,18 +82,20 @@
     <!-- Calendario -->
     <div class="" *ngIf="calendarReady">
         <h3> Por favor, seleccione el día a solicitar la cita</h3>
-        <full-calendar locale="es"  hiddenDays="[0, 6]"
-            selectable="true" [options]="calendarOptions">
-        </full-calendar>
+        <div style="padding: 25px; width: 35%; height: 35%;">
+            <full-calendar locale="es"  hiddenDays="[0, 6]"
+                selectable="true" [options]="calendarOptions">
+            </full-calendar>
+        </div>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+                <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Seleccione la hora de la cita para el {{ fechaSeleccionada}}</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLabel">Seleccione la hora de la cita para el {{ fechaSeleccionada}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                      </button>
+                    </button>
                     </div>
                     <div class="modal-body">
                         <select name="horaSeleccionada" [(ngModel)]="horaSeleccionada" class="form-control form-control-sm">
@@ -99,10 +104,10 @@
                         </select>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" (click)="agendarCita()" class="btn btn-primary">Seleccionar Horario</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" (click)="agendarCita()" class="btn btn-primary">Seleccionar Horario</button>
                     </div>
-                  </div>
+                </div>
                 </div>
         </div>
     </div>
