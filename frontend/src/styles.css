@@ -41,3 +41,62 @@ pre {
 background-color: #f5f5f5;
 padding: 15px;
 }
+
+.hero-a {
+  height: 70vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-a > img {
+    width: 50vh;
+    height: 52vh;
+    z-index: 6;
+}
+
+.hero-a > div {
+  width: 30%;
+  text-align: center;
+  line-height: 45px;
+  font-size: 2rem;
+  color: white;
+  z-index: 5;
+}
+
+.text-a {
+  float: left;
+  width: 22rem;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  
+}
+
+.circle-a {
+  height: 55vh;
+  width: 55vh;
+  border-radius: 50%;
+  top: 20%;
+  left: 48%;
+  background-color: #7460ee;
+  position: absolute;
+  z-index: 0;
+
+  padding: 5%;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.circle-b {
+  height: 9vh;
+  width: 19vh;
+  border-radius: 50%;
+  top: 68%;
+  left: 30%;
+  background-color: #402AC1;
+  position: absolute;
+  z-index: 0;
+}
