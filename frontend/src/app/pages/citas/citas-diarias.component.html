@@ -45,8 +45,7 @@
                 <div class="card-body">
                     <h2>Citas</h2>
                     <h3 class="card-title">Citas (<small> {{totalCitas}} </small>)</h3>
-
-                    <div class="profiletimeline">
+                    <div class="profiletimeline"  *ngIf="esUser">
                         <div *ngFor="let cita of citas;">
                                 <div class="sl-item" >
                                         <div class="sl-left"> <img [src]="cita.medico.foto | imagen : tipoFoto" alt="user" class="img-circle" /> </div>
@@ -61,16 +60,45 @@
                                                                         <b>Contacto: </b> {{cita.medico.telefono}}
                                                                 </div>
                                                                 <div class="col-lg-3 col-md-6 m-b-20">
-                                                                        <b>Correo:  </b>{{cita.medico.correo}} 
+                                                                        <b>Correo:  </b>{{cita.medico.correo}}
                                                                 </div>
                                                         </div>
                                                         </div>
                                                 </div>
-                                                
+
                                                 <hr>
                                         </div>
                         </div>
                 </div>
+                <div class="profiletimeline" *ngIf="esMed">
+                  <div *ngFor="let cita of citas;">
+                          <div class="sl-item" >
+                                  <div class="sl-left"> <img [src]="cita.paciente.foto | imagen : tipoFoto" alt="user" class="img-circle" /> </div>
+                                          <div class="sl-right">
+                                                  <div><a href="#" class="link"><b>{{cita.paciente.nombres}} </b></a> <span class="sl-date"> - {{cita.fecha}}</span>
+                                                  <p> Hora {{cita.hora}} </p>
+                                                  <div class="row">
+                                                          <div class="col-lg-3 col-md-6 m-b-20">
+                                                                  <b>Valor de la consulta: </b> $ {{cita.precioConsulta}}
+                                                          </div>
+                                                          <div class="col-lg-3 col-md-6 m-b-20">
+                                                                  <b>Contacto: </b> {{cita.paciente.telefono}}
+                                                          </div>
+                                                          <div class="col-lg-3 col-md-6 m-b-20">
+                                                                  <b>Correo:  </b>{{cita.paciente.correo}}
+                                                          </div>
+                                                          <td *ngIf="esMed" class="text-center">
+                                                            <button (click)="atenderCita(cita)" class="btn btn-primary m-2"> Atender </button>
+                                                            <button (click)="noAsistioPaciente(cita)" class="btn btn-danger"> No llego </button>
+                                                        </td>
+                                                  </div>
+                                                  </div>
+                                          </div>
+
+                                          <hr>
+                                  </div>
+                  </div>
+                  </div>
                 </div>
             </div>
         </div>

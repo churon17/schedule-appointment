@@ -43,9 +43,9 @@
                 <div class="card-body">
                     <h3 class="card-title">Especialistas de <small> {{currentEspecialidad.nombre}}
                             ({{totalMedicos}})</small></h3>
-                    
+
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
                 <div class="card card-body" style="width: 300px;">
                     <div class="row">
                         <div class="col-md-4 col-lg-3 text-center">
-                            <a href="app-contact-detail.html"><img src="../assets/images/users/1.jpg" alt="user" class="img-circle img-responsive"></a>
+                            <a href="app-contact-detail.html"><img [src]="medico.foto | imagen : 'medico'"  alt="user" class="img-circle img-responsive"></a>
                         </div>
                         <div class="col-md-8 col-lg-9">
                             <h3 class="box-title m-b-0">{{medico.nombres}}</h3> <small>{{medico.correo}}</small>
@@ -72,7 +72,7 @@
                             </button>
                         </div>
                     </div>
-                </div>   
+                </div>
         </div>
     </div>
 

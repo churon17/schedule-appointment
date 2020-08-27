@@ -21,8 +21,8 @@ export class CitasComponent implements OnInit {
   citas : Cita[] = [];
 
   constructor(public loginService : LoginService,
-              public citaService : CitaService) { 
-                this.tipoFoto = loginService.role === "ADMIN_ROLE" ? 'admin' : loginService.role === "MED_ROLE" ? "medico" : "usuarios"; 
+              public citaService : CitaService) {
+                this.tipoFoto = loginService.role === "ADMIN_ROLE" ? 'admin' : loginService.role === "MED_ROLE" ? "medico" : "usuarios";
               }
 
   ngOnInit() {
@@ -57,15 +57,13 @@ export class CitasComponent implements OnInit {
     this.citaService.cargarTodasLasCitasPaciente(this.loginService.currentUser.external_id, this.desde).subscribe( (response : any) =>{
         this.citas = response.data.citas;
         this.totalCitas = response.data.conteo;
-        
-        console.log(response.data.citas);
+        console.log('THIIIIIIS', this.citas);
     });
   }
   cargarCitasMedico(){
     this.citaService.cargarTodasLasCitasMedico(this.loginService.currentUser.external_id, this.desde).subscribe( (response : any) =>{
-      console.log(response.data.citas);
+      console.log('CITAS',  response.data.citas);
       this.citas = response.data.citas;
-      
       this.totalCitas = response.data.conteo;
   });
   }

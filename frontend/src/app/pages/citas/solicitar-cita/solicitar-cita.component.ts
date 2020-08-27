@@ -51,6 +51,7 @@ export class SolicitarCitaComponent implements OnInit {
 
   desdeMedicos = 0;
   totalMedicos = 0;
+  tipoFoto = '';
 
   especialistasReady = false;
   calendarReady: boolean;
@@ -67,7 +68,9 @@ export class SolicitarCitaComponent implements OnInit {
     public router: Router,
     public especialidadService: EspecialidadService,
     public citaService: CitaService,
-    public loginService: LoginService) { }
+    public loginService: LoginService) {
+      this.tipoFoto = loginService.role === "ADMIN_ROLE" ? 'admin' : loginService.role === "MED_ROLE" ? "medico" : "usuarios";
+    }
 
   ngOnInit() {
     this.cargarEspecialidades();
@@ -120,7 +123,7 @@ export class SolicitarCitaComponent implements OnInit {
     this.especialidadService.listarMedicosPorEspecialidad(especialidad.external_id, this.desdeMedicos)
       .subscribe((response: any) => {
         this.totalMedicos = response.data.conteo;
-        this.medicosPorEspecialidad = response.data.medicos;        
+        this.medicosPorEspecialidad = response.data.medicos;
       });
   }
 

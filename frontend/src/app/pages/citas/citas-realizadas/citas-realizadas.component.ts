@@ -13,7 +13,7 @@ import { Medico } from '../../../models/med.model';
 })
 export class CitasRealizadasComponent implements OnInit {
 
-  tipoFoto : string = "";
+  tipoFoto: string = "";
 
   currentCita: Cita;
   currentPaciente: Usuario;
@@ -62,7 +62,7 @@ export class CitasRealizadasComponent implements OnInit {
                       console.log(response);
                       this.citas = response.data.citas;
                       this.totalCitas = response.data.conteo;
-                      this.citasReady = true;                      
+                      this.citasReady = true;
                     });
   }
 
@@ -95,11 +95,10 @@ export class CitasRealizadasComponent implements OnInit {
   verDetallesCitaMed(cita: Cita){
     this.mostrarCitas = false;
     this.currentCita = cita;
-    console.log(cita);
-    
+    console.log('HEY',cita);
+
     this.mostrarDetallesMed = true;
     this.currentPaciente = this.currentCita.paciente;
-    // this.currentConsulta = this.currentCita.consulta;
   }
 
   verDetallesCitaUser(cita: Cita){
@@ -107,7 +106,6 @@ export class CitasRealizadasComponent implements OnInit {
     this.currentCita = cita;
     this.mostrarDetallesUser = true;
     this.currentMedico = this.currentCita.medico;
-    // this.currentConsulta = this.currentCita.consulta;
   }
 
   verCitasNuevamente(){
